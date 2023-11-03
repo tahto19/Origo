@@ -1,0 +1,27 @@
+[
+    {
+        "value": 0,
+        "color": "#76B4D5",
+        "rgba": "rgba(118,180,213,255)"
+    },
+    {
+        "value": 0,
+        "color": "#CFE3ED",
+        "rgba": "rgba(207,227,237,255)"
+    },
+    {
+        "value": 0,
+        "color": "#F6D6C8",
+        "rgba": "rgba(246,214,200,255)"
+    },
+    {
+        "value": 0,
+        "color": "#EC846E",
+        "rgba": "rgba(236,132,110,255)"
+    },
+    {
+        "value": 0,
+        "color": "#CA0020",
+        "rgba": "rgba(202,0,32,255)"
+    }
+]

@@ -1,0 +1,14 @@
+<form>
+    <div class="multiselect">
+        <div class="selectBox form-select arrowChange" aria-label="Default select example"
+            (click)="showCheckboxes($event)" for="label1">
+            {{selected}}
+        </div>
+        <div [id]="checkboxes" class="checkboxes">
+            <ng-container *ngFor="let d of data">
+                <label [attr.for]="d.name" (click)="ItemSelected(d.name)" id="d.name"><input type="checkbox"
+                        class="form-check-input" [value]="d.name" [(ngModel)]="selected" />{{d.name}}</label>
+            </ng-container>
+        </div>
+    </div>
+</form>

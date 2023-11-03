@@ -1,0 +1,11 @@
+<div>
+    <div class="main-section">
+        <div class="breadcrumb flat">
+            <a *ngFor="let bc of breadCrumbs;let i = index" [class]="breadCrumbs.length === i+1 ? 'active':''">
+                {{bc
+                }}
+            </a>
+
+        </div>
+    </div>
+</div>

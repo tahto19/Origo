@@ -1,0 +1,457 @@
+<div>
+    <div style="padding: 6px">
+        <h3>Observations</h3>
+    </div>
+    <div class="accordion" id="accordionExample2">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button [class]="
+            header === 'basemap'
+              ? 'accordion-button accordion-button-active'
+              : 'accordion-button'
+          " type="button" data-bs-toggle="collapse" data-bs-target="#basemap" aria-expanded="true" for="basemap">
+                    <label class="form-check-label" for="basemap"> Base Map </label>
+                </button>
+            </h2>
+            <div id="basemap" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
+                <div class="accordion-body">
+                    <!-- <select class="form-select" aria-label="Default select example">
+                        <option selected value="None">Open Street View</option>
+                        <option>Satellite View</option>
+                    </select> -->
+
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="basetile" id="Satellite_View"
+                                value="Satellite View" (click)="handleView($event)"
+                                [checked]="view === 'Satellite View' ? 'checked' : ''" /><label class="form-check-label"
+                                for="Satellite_View">
+                                Satellite View
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="basetile" id="Street_View"
+                                value="Open Street View" (click)="handleView($event)"
+                                [checked]="view === 'Open Street View' ? 'checked' : ''" /><label
+                                class="form-check-label" for="Street_View">
+                                Street View
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="leftMenuForm" (change)="handleChanges($event)">
+                <div class="accordion-item" *ngFor="let nav of navbarList; index as i">
+                    <h2 class="accordion-header">
+                        <button [class]="
+                header === nav.name
+                  ? 'accordion-button accordion-button-active'
+                  : 'accordion-button'
+              " type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#' + nav.name" aria-expanded="true"
+                            [attr.aria-controls]="nav.name" [attr.for]="nav.name" (click)="handleClick($event)">
+                            <input class="form-check-input hide" type="radio" [name]="nav.name + 'radion'"
+                                [id]="nav.name + 'radion'" [value]="nav.name" [(ngModel)]="header"
+                                [checked]="header" /><label class="form-check-label" [for]="nav.name">
+                                {{ nav.name.split("_")[0] }} {{ nav.name.split("_")[1] }}
+                            </label>
+                        </button>
+                    </h2>
+                    <div [id]="nav.name" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body" *ngIf="display === 1">
+                            <div class="d-flex flex-column justify-content-center">
+                                <!-- <div class="col-lg-12">
+                                    <select class="form-select" aria-label="Default select example"
+                                        (change)="onChangeYearSelect($event)">
+
+                                        <option *ngFor="let navi of nav.inside" [value]="navi.name">
+                                            {{ navi.name }}
+                                        </option>
+                                    </select>
+                                </div> -->
+                                <div class="col-lg-2 mt-2">Year</div>
+                                <ng-container *ngFor="let navi of nav.inside">
+                                    <!-- [checked]="header" -->
+                                    <!-- [(ngModel)]="header" -->
+                                    <div style="padding-left: 21px">
+                                        <input class="form-check-input" type="radio" [name]="navi.name + 'year'"
+                                            [id]="navi.name + '_' + nav.name" [value]="navi.name"
+                                            [attr.for]="navi.name + '_' + nav.name"
+                                            (click)="onChangeYearSelect(navi.name)" [checked]="
+                        year.toString() !== navi.name.toString()
+                          ? true
+                          : false
+                      " [(ngModel)]="year" /><label [for]="navi.name + '_' + nav.name" class="form-check-label">
+                                            {{ navi.name }}
+                                        </label>
+                                    </div>
+                                </ng-container>
+
+                                <ng-container *ngFor="let navi of nav.inside">
+                                    <div class="col-lg-12" *ngIf="year.toString() === navi.name.toString()">
+                                        <div class="col-lg-2 mt-2">Months</div>
+                                        <!-- <select class="form-select" aria-label="month"
+                                            (change)="updateDistributionMapData($event,navi.name,nav.name)"> -->
+
+                                        <div class="form-check form-check-inline" style="padding-left: 50px">
+                                            <!-- [checked]="header" -->
+                                            <!-- [(ngModel)]="header" -->
+                                            <div *ngFor="let navii of navi.inside"
+                                                [attr.for]="navii.name + '_' + nav.name">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="onChangeFile(navii.name+'_'+nav.name)" [checked]="
+                            file.toString()+'_'+nav.name !== navii.name+'_'+nav.name
+                            ? false
+                            : true
+                          " [name]="navii.name + 'radion'" [id]="navii.name + '_' + nav.name"
+                                                    [value]="navii.name+'_'+nav.name"
+                                                    [attr.for]="navii.name + '_' + nav.name" [(ngModel)]="file" /><label
+                                                    [for]="navii.name + '_' + nav.name" class="form-check-label">
+                                                    {{ navii.name }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-check form-check-inline">
+                                            <div> <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                    id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">1</label>
+                                            </div>
+                                            <div> <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                    id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">2</label>
+                                            </div>
+                                            <div> <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                    id="inlineRadio3" value="option3">
+                                                <label class="form-check-label" for="inlineRadio3">3</label>
+                                            </div>
+                                            <div><input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                    id="inlineRadio4" value="option4">
+                                                <label class="form-check-label" for="inlineRadio4">4</label>
+                                            </div>
+                                            <div> <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                    id="inlineRadio5" value="option5">
+                                                <label class="form-check-label" for="inlineRadio5">5</label>
+                                            </div>
+                                            <div for="inlineRadio6"><input class=" form-check-input" type="radio"
+                                                    name="inlineRadioOptions" id="inlineRadio6" value="option6">
+                                                <label class="form-check-label" for="inlineRadio6">6</label>
+                                            </div>
+
+
+
+
+
+                                        </div> -->
+                                        <!-- </select> -->
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div *ngIf="display === 2" class="accordion-body">
+                            <div class="d-flex flex-column justify-content-center">
+                                <div class="col-lg-12">
+                                    <ng-container *ngFor="let navi of nav.inside"><app-dropdown-menu
+                                            [data]="navi.inside" /></ng-container>
+
+                                    <!-- <select class="form-select" aria-label="Default select example"
+                                        (change)="onChangeYearSelect($event)">
+
+                                        <option *ngFor="let navi of nav.inside" [value]="navi.name">
+                                            <input type="radio" /> {{ navi.name }}
+                                        </option>
+                                    </select> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button [class]="
+                            header === 'Humidity'
+                            ? 'accordion-button accordion-button-active'
+                            : 'accordion-button'
+                            " type="button" data-bs-toggle="collapse" data-bs-target="#Humidity" aria-expanded="true"
+                            aria-controls=" attr." for="Humidity" (click)="handleClick($event)"
+                            [disabled]="header === 'Humidity'">
+                            <input class="form-check-input" type="radio" name="Humidityradion" id="Humidityradion'"
+                                value="Humidity" [(ngModel)]="header" [checked]="header" /><label
+                                class="form-check-label" for="Humidity">
+                                Humidity
+                            </label>
+                        </button>
+                    </h2>
+                    <div id="Humidity" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="d-flex flex-column justify-content-center">
+                                <div class="col-lg-12">
+                                    <select class="form-select" aria-label="Default select example"
+                                        (change)="onChangeYearSelect($event)">
+                                        <option selected value="None">Year</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-12 mt-2" *ngIf="year === 'None'">
+                                    <select class="form-select" aria-label="Default select example"
+                                        (change)="onChangeYearSelect($event)">
+                                        <option selected value="None">Year</option>
+                                        <option>1</option>
+                                        <option>1</option>
+                                        <option>1</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div style="padding: 6px">
+                <h3>Forecast</h3>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        (click)="removeTemplayer('wind')" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                        aria-controls="flush-collapseOne">
+                        Wind
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <!-- <select class="form-select" aria-label="Default select example" >
+                            <option selected value="None">Current</option>
+                            <option>Daily Forecast</option>
+                            <option>3h for 5days</option>
+                        </select> -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Wind" id="Current"
+                                [checked]="layer === 'wind_Current' ? 'checked' : ''"
+                                (click)="getTempLayer($event, 'wind', 'Current',null)" />
+                            <label class="form-check-label" for="Current"> Current </label>
+                        </div>
+
+                        <!-- <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Wind" id="Daily"
+                                (click)="getTempLayer($event, 'wind', 'Daily')"
+                                [checked]="layer === 'wind_Daily' ? 'checked' : ''" />
+                            <label class="form-check-label" for="Daily">
+                                Daily Forecast
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Wind" id="Hours"
+                                (click)="getTempLayer($event, 'wind', 'Hours')"
+                                [checked]="layer === 'wind_Hours' ? 'checked' : ''" />
+                            <label class="form-check-label" for="Hours">
+                                3h for 5 days
+                            </label>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"
+                        (click)="removeTemplayer('min')">
+                        Temperature
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <!-- <select class="form-select" aria-label="Default select example" >
+                            <option selected value="None">Current</option>
+                            <option>Daily Forecast</option>
+                            <option>3h for 5days</option>
+                        </select> -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="min" id="mCurrent"
+                                [checked]="layer === 'min forecast_Current' ? 'checked' : ''"
+                                (click)="getTempLayer($event, 'min forecast', 'Current',null)" />
+                            <label class="form-check-label" for="mCurrent"> Current </label>
+                        </div>
+                        <!-- <div class="form-check">
+                            <input class="form-check-input" type="radio" name="min" id="mDaily"
+                                (click)="getTempLayer($event, 'min forecast', 'Daily')"
+                                [checked]="layer === 'min forecast_Daily' ? 'checked' : ''" />
+                            <label class="form-check-label" for="mDaily">
+                                Daily Forecast
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="min" id="mHours"
+                                (click)="getTempLayer($event, 'min forecast', 'Hours')"
+                                [checked]="layer === 'min forecast_Hours' ? 'checked' : ''" />
+                            <label class="form-check-label" for="mHours">
+                                3h for 5 days
+                            </label>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"
+                        (click)="removeTemplayer('rainfall')">
+                        Rainfall
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <!-- <select class="form-select" aria-label="Default select example" (change)="getTempLayer($event,'wind',)">
+                            <option selected value="None">Current</option>
+                            <option>Daily Forecast</option>
+                            <option>3h for 5days</option>
+                        </select> -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rainfall" id="flexRadioDefault1"
+                                (click)="getTempLayer($event, 'Rainfall', 'Current',null)"
+                                [checked]="layer === 'Rainfall_Current' ? 'checked' : ''" />
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Current
+                            </label>
+                        </div>
+
+                        <!-- <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rainfall" id="flexRadioDefault2"
+                                (click)="getTempLayer($event, 'Rainfall', 'Daily')"
+                                [checked]="layer === 'Rainfall_Daily' ? 'checked' : ''" />
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Daily Forecast
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rainfall" id="rHours"
+                                [checked]="layer === 'Rainfall_Hours' ? 'checked' : ''"
+                                (click)="getTempLayer($event, 'Rainfall', 'Hours')" />
+                            <label class="form-check-label" for="rHours">
+                                3h for 5 days
+                            </label>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div style="padding: 6px">
+                <h3>Weather Forcast</h3>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFirst" aria-expanded="false" aria-controls="flush-collapseThree"
+                        (click)="removeTemplayer('rainfall')">
+                        Rainfield
+                    </button>
+                </h2>
+                <div id="flush-collapseFirst" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <!-- <select class="form-select" aria-label="Default select example" (change)="getTempLayer($event,'wind',)">
+                            <option selected value="None">Current</option>
+                            <option>Daily Forecast</option>
+                            <option>3h for 5days</option>
+                        </select> -->
+
+                        <div class="form-check" *ngFor="let r of rainfallForecast">
+
+
+                            <input class="form-check-input" type="radio" [name]="r.name" [id]="r.name" [value]="r.code"
+                                (click)="rainfieldGet($event,r)" [checked]="typeOfRainField === r.code ? 'checked' : ''"
+                                [(ngModel)]="typeOfRainField" />
+                            <label class="form-check-label" [attr.for]="r.name">
+                                {{r.name}}
+                            </label>
+
+
+
+                            <!-- <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rainfall" id="flexRadioDefault2"
+                                (click)="getTempLayer($event, 'Rainfall', 'Daily')"
+                                [checked]="layer === 'Rainfall_Daily' ? 'checked' : ''" />
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Daily Forecast
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rainfall" id="rHours"
+                                [checked]="layer === 'Rainfall_Hours' ? 'checked' : ''"
+                                (click)="getTempLayer($event, 'Rainfall', 'Hours')" />
+                            <label class="form-check-label" for="rHours">
+                                3h for 5 days
+                            </label>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <ul class="nav flex-column">
+    <li *ngFor="let nav of navbarList; index as i;">
+        <div ngbAccordion #accordion="ngbAccordion">
+            <div [ngbAccordionItem]="nav.name" #first="ngbAccordionItem">
+                <div ngbAccordionToggle>
+                    <div ngbAccordionHeader class="accordion-button custom-header justify-content-between">
+                        <p class="m-0" [class]="!first.collapsed ?'activeClick' :''">{{nav.name}}</p>
+                        <a [class]="first.collapsed ?'btn-arrow collapseitem-btn' :'btn-arrow uncollapseitem-btn'"></a>
+
+
+                    </div>
+                </div>
+
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody class="bodyAccodion">
+                        <ng-template>
+                            <div ngbAccordion [closeOthers]="true">
+                                <div ngbAccordionItem *ngFor="let navi of nav.inside" #inside="ngbAccordionItem"
+                                    class="insideItem" [collapsed]="nav.name !== 'First'">
+                                    <div ngbAccordionToggle>
+                                        <div ngbAccordionHeader
+                                            class="accordion-button custom-header justify-content-between inside-header">
+                                            <p class="m-0" [class]="!inside.collapsed ?'activeClick' :''">
+                                                {{navi.name}}</p>
+                                            <a
+                                                [class]="inside.collapsed ?'btn-arrow collapseitem-btn' :'btn-arrow uncollapseitem-btn'"></a>
+                                        </div>
+                                    </div>
+                                    <div ngbAccordionCollapse>
+                                        <div ngbAccordionBody class="bodyAccodion padding-left-none">
+                                            <ng-template>
+                                                <ul *ngFor="let navii of navi.inside; index as iii;">
+                                                    <li (click)="updateDistributionMapData(navii.name,navi.name,nav.name)"
+                                                        class="list-margin-top">
+                                                        <a
+                                                            [style]="getActiveLastList === navii.name ?'font-weight:bold':''">{{navii.name}}</a>
+                                                    </li>
+
+                                                </ul>
+                                            </ng-template>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul> -->
+    </div>

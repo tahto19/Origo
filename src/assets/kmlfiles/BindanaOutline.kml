@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Top level Outline.kml</name>
+	<Style id="sh_ylw-pushpin43">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00ffff</color>
+			<width>2.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>807fffff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00ffff</color>
+			<width>2.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin52">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00ffff</color>
+			<width>2.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>807fffff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00ffff</color>
+			<width>2.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_ylw-pushpin391">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin52</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin43</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Folder>
+		<name>Top level Outline</name>
+		<open>1</open>
+		<Placemark>
+			<name>Farm Outline 1</name>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							116.3971896228636,-30.60276879875496,0 116.4398812331564,-30.60391623029119,0 116.4403485216228,-30.60648450326534,0 116.4360223892941,-30.60741724854539,0 116.4359256379975,-30.63552584238113,0 116.4285641073521,-30.63688054930321,0 116.4272931308837,-30.64473977267237,0 116.4156529387487,-30.6472122847429,0 116.4162905086555,-30.66438423389584,0 116.436543020069,-30.66626106813415,0 116.4373059164863,-30.68613143850447,0 116.4535545039778,-30.68613933644811,0 116.4557473822131,-30.68288369532747,0 116.4811502230793,-30.68319472417521,0 116.4864624628152,-30.69140041343633,0 116.4914922756825,-30.69219052114109,0 116.4922407480285,-30.71976738117491,0 116.5143551015645,-30.71947275356499,0 116.5164909357091,-30.66980016977919,0 116.5243515641975,-30.67154033651857,0 116.5254912637615,-30.63099906120544,0 116.5088190585427,-30.62344783049294,0 116.5076524092342,-30.6114416025946,0 116.4664359002811,-30.6105863119798,0 116.4658049528768,-30.60406309742402,0 116.4478576058174,-30.60134837156158,0 116.4485082330403,-30.59184303974872,0 116.4537864933856,-30.59076960077151,0 116.4511846192938,-30.58522246941079,0 116.4517624870729,-30.58146588405904,0 116.4678782333175,-30.58015955982544,0 116.4682246843331,-30.56856351473644,0 116.4556014378379,-30.56779595537737,0 116.454641694252,-30.57034104993104,0 116.4444940210167,-30.57027365937931,0 116.4429303419295,-30.57818685276941,0 116.426642558075,-30.57803314779494,0 116.4120278312447,-30.58384647643932,0 116.3971896228636,-30.60276879875496,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Farm Outline 2</name>
+			<styleUrl>#msn_ylw-pushpin391</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							116.4543351051488,-30.63822530961228,0 116.4528401786788,-30.66505987512695,0 116.4543766672691,-30.6659368656034,0 116.4560116164057,-30.67271266232072,0 116.4583597082987,-30.66707724234612,0 116.46181519324,-30.6652121875443,0 116.4734037921285,-30.66460642145207,0 116.4753270912063,-30.6389120429942,0 116.4708603651214,-30.63815742611108,0 116.470311473593,-30.63067722757194,0 116.465212943872,-30.63064913193179,0 116.4661277275063,-30.63784904561566,0 116.4620155857342,-30.63769330518387,0 116.4572000853021,-30.63563888664989,0 116.4543351051488,-30.63822530961228,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

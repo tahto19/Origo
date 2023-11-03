@@ -1,0 +1,56 @@
+<app-spinner-l class="width" [showLoading]="loadingData"></app-spinner-l>
+<div class="container-fluid" style="overflow: hidden;">
+
+  <div class="row mb-4">
+    <div class="col-md-12 col-xs-12 pl-0 pr-0">
+      <app-dropdown [tenants]="tenants" (update)="getDistributionMapDirectory($event)"></app-dropdown>
+    </div>
+
+    <h2 style="font-weight: 400;
+    color:#333333;margin: 15px;">X Dash Map
+    </h2>
+
+  </div>
+
+  <div id="main" class="col-md-12 col-xs-12">
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-lg-2" id="sidebar-wrapper">
+        <app-leftmenu (changecurrentDataBreadCrumbs)="changecurrentDataBreadCrumbs($event)"
+          (update)="updateDistributionMapFile($event)" [directory]="directoryData" (remove)="removeLayers()"
+          (viewStreet)="setStreetViewLayer()" (viewSat)="setSatelliteLayer()" (setTempLayer)="setTempLayer($event)"
+          (removeGetAccumulationRainPrecipitation)="removeGetAccumulationRainPrecipitation()"
+          (setRainForecast)="getAccumulationRainPrecipitation($event)"></app-leftmenu>
+      </div>
+
+      <div class="col-lg-10 col-md-12 col-xs-12 content" id="page-content-wrapper">
+
+        <app-breadcrumbs [breadCrumbsData]="breadCrumbs"></app-breadcrumbs>
+
+        <div class="row m-0 p-0">
+          <form form="ngForm ">
+            <div class="form-group row">
+              <div class="col-sm-10 text-right">
+                <label for="Download"
+                  style="vertical-align: middle;line-height: 30px; font-weight: 700; font-size: 14px;">Download
+                  File:</label>
+              </div>
+              <div class="col-sm-2 ">
+                <select [disabled]="disableDonwload"
+                  class="form-control form-control-sm ng-pristine ng-valid ng-not-empty ng-touched  form-select-sm"
+                  name="fileType" [(ngModel)]="fileTypeToBeDL" (change)="this.downloadDistributionMapFile($event)">
+                  <option *ngFor="let file of fileTypes" [value]="file.value">{{ file.text }}</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="col col-md-12 col-xs-12 mt-2">
+
+          <div style="height: 620px; width: 100%;" id="map">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
